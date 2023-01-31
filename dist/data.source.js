@@ -8,7 +8,7 @@ exports.appConnection = new typeorm_1.DataSource({
     host: "localhost",
     port: 5432,
     username: "postgres",
-    password: "A.123456",
+    password: "postgres",
     database: "growsoftDB",
     synchronize: true,
     logging: true,

@@ -1,6 +1,11 @@
 import { Request, Response } from 'express';
 import { Customer } from '../entities/customer.entities';
 
+// welcome
+export const welcome = (req: Request, res: Response) => { 
+    return res.status(200).send('Welcome to Growsoft API')
+}
+
 // add a new customer
 export const addCustomer = async (req: Request, res: Response) => {
     console.log(req.body);
