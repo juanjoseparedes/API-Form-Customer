@@ -32,10 +32,12 @@ function main() {
         const IPSERVER = process.env.IP || '127.0.0.1';
         // instance of express framework
         const app = (0, express_1.default)();
+        // to understan the data coming form form
+        app.use(express_1.default.urlencoded({ extended: false }));
+        app.use(express_1.default.json());
         // middleware
         app.use((0, morgan_1.default)('dev'));
         app.use((0, cors_1.default)());
-        app.use(express_1.default.json());
         // router default
         app.use(cliente_routers_1.default);
         // start the app

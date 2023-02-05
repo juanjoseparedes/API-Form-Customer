@@ -22,11 +22,14 @@ async function main() {
     // instance of express framework
     const app = express();
 
+    // to understan the data coming form form
+    app.use(express.urlencoded({extended: false}));
+    app.use(express.json())
+
     // middleware
     app.use(morgan('dev'));
     app.use(cors());
-    app.use(express.json())
-
+ 
     // router default
     app.use(customerRouter);
 

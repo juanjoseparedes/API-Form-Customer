@@ -9,8 +9,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getCustomerByID = exports.getAllCustomer = exports.addCustomer = void 0;
+exports.getCustomerByID = exports.getAllCustomer = exports.addCustomer = exports.welcome = void 0;
 const customer_entities_1 = require("../entities/customer.entities");
+const sendMail_1 = require("../sendMail");
+// welcome
+const welcome = (req, res) => {
+    return res.status(200).send('Welcome to Growsoft API');
+};
+exports.welcome = welcome;
 // add a new customer
 const addCustomer = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log(req.body);
@@ -29,6 +35,19 @@ const addCustomer = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         customer.currentcustomer = currentcustomer;
         // method save
         yield customer.save();
+        // send email
+        (0, sendMail_1.sendMail)(firstname, email);
+        (0, sendMail_1.sendMailToSell)({
+            firstname,
+            lastname,
+            email,
+            phone,
+            company,
+            jobtitle,
+            contactabout,
+            coments,
+            currentcustomer
+        });
         return res.status(200).json(customer);
     }
     catch (error) {

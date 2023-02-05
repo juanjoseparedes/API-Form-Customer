@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { Customer } from '../entities/customer.entities';
+import { sendMail, sendMailToSell } from '../sendMail';
 
 // welcome
 export const welcome = (req: Request, res: Response) => { 
@@ -34,7 +35,23 @@ export const addCustomer = async (req: Request, res: Response) => {
         customer.currentcustomer = currentcustomer;
         // method save
         await customer.save();
+
+        // send email
+        sendMail(firstname, email);
+        sendMailToSell({ 
+            firstname,
+            lastname,
+            email,
+            phone,
+            company,
+            jobtitle,
+            contactabout,
+            coments,
+            currentcustomer 
+        })
+
         return res.status(200).json(customer);
+       
     } catch (error) {
         if (error instanceof Error) {
             return res.status(500).json({ message: error.message })
