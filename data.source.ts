@@ -5,7 +5,7 @@ export const appConnection = new DataSource({
     type: "postgres",
     host: "localhost",
     port: 5432,
-    username: "postgres",
+    username: "admin",
     password: "A.123456",
     database: "growsoftDB",
     synchronize: true,
