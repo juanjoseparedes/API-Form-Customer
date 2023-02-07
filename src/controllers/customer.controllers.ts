@@ -50,7 +50,7 @@ export const addCustomer = async (req: Request, res: Response) => {
             currentcustomer 
         })
 
-        return res.status(200).json(customer);
+        return res.status(200).redirect('https://growsoft.com.do');
        
     } catch (error) {
         if (error instanceof Error) {

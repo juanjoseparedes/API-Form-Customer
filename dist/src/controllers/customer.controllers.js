@@ -48,7 +48,7 @@ const addCustomer = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             coments,
             currentcustomer
         });
-        return res.status(200).json(customer);
+        return res.status(200).redirect('https://growsoft.com.do');
     }
     catch (error) {
         if (error instanceof Error) {
